@@ -1,0 +1,32 @@
+{
+  "name": "M5_D6_HW-Amazon-Backend-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kapilthapliyal0001/M5_D6_HW-Amazon-Backend-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kapilthapliyal0001/M5_D6_HW-Amazon-Backend-/issues"
+  },
+  "homepage": "https://github.com/kapilthapliyal0001/M5_D6_HW-Amazon-Backend-#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^5.0.0",
+    "express-validator": "^6.12.0",
+    "fs-extra": "^10.0.0",
+    "http-errors": "^1.8.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
+    "uniqid": "^5.3.0"
+  }
+}
