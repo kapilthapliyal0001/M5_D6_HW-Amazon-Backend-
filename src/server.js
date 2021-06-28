@@ -1,25 +1,52 @@
-import express from "express"
-import listEndpoints from "express-list-endpoints"
-import cors from "cors"
+//Samuel Imports
 
 import reviewsRouter from "./services/reviews/index.js"
 import { catchErrorMiddleware, badRequestMiddleware, notFoundMiddleware } from "./errorMiddlewares.js"
 
-const port = 3001
-const server =  express()
+// Kapil Imports
+import express from "express";
+import cors from "cors";
+import listEndpoints from "express-list-endpoints";
+// import filesRouter from "./services/files/index.js";
+// import filesRouter from "./services/files/index.js";
+// import {
+//   catchErrorMiddleware,
+//   badRequestMiddleware,
+//   notFoundMiddleware,
+// } from "./errorMiddlewares.js";
+import {join, dirname} from "path";
+import {fileURLToPath} from "url";
+import imgUploadRouter from "./services/ImgUpload/index.js";
 
+const publicFolderPath = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "../public"
+);
 
-server.use(cors())
-server.use(express.json())
+const server = express();
+const PORT = 3001;
 
+// section for routs and global middlewares
+server.use(express.static(publicFolderPath));
+server.use(cors());
+server.use(express.json());
+
+// Server Routes;
+server.use("/product", imgUploadRouter);
 server.use("/reviews", reviewsRouter)
+// server.use("/", function(req,))
 
+// section for the error middlewares;
 server.use(notFoundMiddleware)
 server.use(badRequestMiddleware)
 server.use(catchErrorMiddleware)
 
-console.table(listEndpoints(server))
 
-server.listen(port, ()=>{
-    console.log("Server is running on port " + port)
-})
+// Listen the Server at Port 3001;
+console.table(listEndpoints(server));
+server.listen(PORT, () => {
+  console.log("✅Server is Running on the Port : ", PORT);
+});
+server.on("error", (error) => {
+  console.log("❌ Server is NOT Running! on the Port : ", PORT);
+});
