@@ -10,6 +10,7 @@ import listEndpoints from "express-list-endpoints";
 // } from "./errorMiddlewares.js";
 import {join, dirname} from "path";
 import {fileURLToPath} from "url";
+import imgUploadRouter from "./services/ImgUpload/index.js";
 
 const publicFolderPath = join(
   dirname(fileURLToPath(import.meta.url)),
@@ -20,20 +21,20 @@ const server = express();
 const PORT = 3001;
 
 // section for routs and global middlewares
+server.use(express.static(publicFolderPath));
+server.use(cors());
+server.use(express.json());
 
-// server.use(express.static(publicFolderPath));
-// server.use(cors());
-// server.use(express.json());
-// server.use("/", callbackfunction);
+// Server Routes;
+server.use("/product/:id/upload", imgUploadRouter);
+// server.use("/", function(req,))
 
 // section for the error middlewares;
-
 // server.use();
 // server.use();
 // server.use();
 
 // Listen the Server at Port 3001;
-
 console.table(listEndpoints(server));
 server.listen(PORT, () => {
   console.log("✅Server is Running on the Port : ", PORT);
