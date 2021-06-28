@@ -1,3 +1,8 @@
+
+// Kristian Imports
+import { notFound, forbidden, catchAllErrorHandler } from "./errorHandlers.js";
+import productsRouter from "../src/products/index.js";
+
 //Samuel Imports
 
 import reviewsRouter from "./services/reviews/index.js"
@@ -34,9 +39,17 @@ server.use(express.json());
 // Server Routes;
 server.use("/product", imgUploadRouter);
 server.use("/reviews", reviewsRouter)
+server.use("/products", productsRouter);
+
 // server.use("/", function(req,))
 
 // section for the error middlewares;
+// KristinanError Midd
+server.use(notFound);
+server.use(forbidden);
+server.use(catchAllErrorHandler);
+
+// Samuel Error Midd
 server.use(notFoundMiddleware)
 server.use(badRequestMiddleware)
 server.use(catchErrorMiddleware)
