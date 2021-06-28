@@ -1,3 +1,9 @@
+//Samuel Imports
+
+import reviewsRouter from "./services/reviews/index.js"
+import { catchErrorMiddleware, badRequestMiddleware, notFoundMiddleware } from "./errorMiddlewares.js"
+
+// Kapil Imports
 import express from "express";
 import cors from "cors";
 import listEndpoints from "express-list-endpoints";
@@ -27,12 +33,14 @@ server.use(express.json());
 
 // Server Routes;
 server.use("/product", imgUploadRouter);
+server.use("/reviews", reviewsRouter)
 // server.use("/", function(req,))
 
 // section for the error middlewares;
-// server.use();
-// server.use();
-// server.use();
+server.use(notFoundMiddleware)
+server.use(badRequestMiddleware)
+server.use(catchErrorMiddleware)
+
 
 // Listen the Server at Port 3001;
 console.table(listEndpoints(server));
