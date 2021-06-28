@@ -2,6 +2,7 @@ import express from "express";
 import uniqid from "uniqid";
 import createError from "http-errors";
 import fs from "fs";
+import fe from "fs-extra";
 import path, {dirname, join} from "path";
 import {fileURLToPath} from "url";
 import {validationResult} from "express-validator";
@@ -17,12 +18,14 @@ const __dirname = dirname(__fileName);
 const imgUploadRouter = express.Router();
 
 imgUploadRouter.post(
-  "/",
+  "/:id/upload",
   multer().single("img_file"),
   async (req, res, next) => {
+    //   fe.ensureDir()
     try {
-      console.log(req.file);
-      await writeUsersPicture(req.file.originalname, req.file.buffer);
+      const new_id = req.params.id;
+      console.log(new_id);
+      await writeUsersPicture(req.file.originalname, req.file.buffer, new_id);
       res.send("Image Uploaded! ");
     } catch (error) {
       next(error);

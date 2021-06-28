@@ -26,7 +26,7 @@ server.use(cors());
 server.use(express.json());
 
 // Server Routes;
-server.use("/product/:id/upload", imgUploadRouter);
+server.use("/product", imgUploadRouter);
 // server.use("/", function(req,))
 
 // section for the error middlewares;
