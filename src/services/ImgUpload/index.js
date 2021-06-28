@@ -25,7 +25,7 @@ imgUploadRouter.post(
     try {
       const new_id = req.params.id;
       console.log(new_id);
-      await writeUsersPicture(req.file.originalname, req.file.buffer, new_id);
+      writeUsersPicture(req.file.originalname, req.file.buffer, new_id);
       res.send("Image Uploaded! ");
     } catch (error) {
       next(error);

@@ -1,12 +1,15 @@
-
 // Kristian Imports
-import { notFound, forbidden, catchAllErrorHandler } from "./errorHandlers.js";
+import {notFound, forbidden, catchAllErrorHandler} from "./errorHandlers.js";
 import productsRouter from "../src/products/index.js";
 
 //Samuel Imports
 
-import reviewsRouter from "./services/reviews/index.js"
-import { catchErrorMiddleware, badRequestMiddleware, notFoundMiddleware } from "./errorMiddlewares.js"
+import reviewsRouter from "./services/reviews/index.js";
+import {
+  catchErrorMiddleware,
+  badRequestMiddleware,
+  notFoundMiddleware,
+} from "./errorMiddlewares.js";
 
 // Kapil Imports
 import express from "express";
@@ -37,9 +40,9 @@ server.use(cors());
 server.use(express.json());
 
 // Server Routes;
-server.use("/product", imgUploadRouter);
-server.use("/reviews", reviewsRouter)
-server.use("/products", productsRouter);
+server.use("/product", imgUploadRouter); // Kapil
+server.use("/reviews", reviewsRouter); // Samuel
+server.use("/products", productsRouter); // Kristian
 
 // server.use("/", function(req,))
 
@@ -50,10 +53,9 @@ server.use(forbidden);
 server.use(catchAllErrorHandler);
 
 // Samuel Error Midd
-server.use(notFoundMiddleware)
-server.use(badRequestMiddleware)
-server.use(catchErrorMiddleware)
-
+server.use(notFoundMiddleware);
+server.use(badRequestMiddleware);
+server.use(catchErrorMiddleware);
 
 // Listen the Server at Port 3001;
 console.table(listEndpoints(server));
