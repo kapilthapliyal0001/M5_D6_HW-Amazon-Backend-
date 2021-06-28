@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "123455",
+        "comment": "Lorem ipsuim data",
+        "rate": 10,
+        "productId": "5d318e1a8541744830bef139",
+        "createdAt": "2019-08-01T12:46:45.895Z"
+    },
+    {
+        "comment": "Lorem ipsuim",
+        "rate": 1,
+        "productId": "5d318e1a8541744830bef139",
+        "_id": "bb0r59s1kqgj2p3m",
+        "createdAt": "2021-06-28T11:18:40.017Z"
+    },
+    {
+        "comment": "Lorem ipsuim",
+        "rate": 1,
+        "productId": "123455",
+        "_id": "bb0r59vhkqgjblfp",
+        "createdAt": "2021-06-28T11:25:35.172Z"
+    }
+]
