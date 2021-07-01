@@ -33,9 +33,25 @@ imgUploadRouter.post(
   }
 );
 
+imgUploadRouter.get("/:id/upload", async (req, res, next) => {
+  // section to pass images in the product image id folder present;
+
+  const id = req.params.id;
+  const folder_path = join(
+    dirname(fileURLToPath(import.meta.url)),
+    `../../../public/img/products/${id}`
+  );
+  const files = await fe.readdir(folder_path);
+
+  const links = files.map(
+    (fileName) => `http://localhost:3001/img/products/${id}/${fileName}`
+  );
+  res.send(links);
+});
+
 imgUploadRouter.get("/", (req, res, next) => {
   try {
-    res.send("Working ;;;;;;");
+    res.send("Working");
   } catch (error) {
     next(error);
   }
